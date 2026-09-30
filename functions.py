@@ -3,7 +3,7 @@ import json
 def load_data(filename):
 	with open(filename, "r") as file:
 		data = json.load(file)
-	
+
 	donations = data["donations"]
 	recipients = data["recipients"]
 	volunteers = data["volunteers"]
@@ -13,16 +13,18 @@ def load_data(filename):
 # Function to validate all attributes of donations dictionary
 
 def validate_donations(donations):
-	for donation in donations:
-		if donation_id in donations["id"]:
-			print("Donation id exists: ", donation_id)
-			return False
+	valid = True
+	for key, info in donations.items():
 
-		if quantity in donations["quantity"] < 0:
-			print("There is nothing left: ", quantity)
-			return False
-		#eventually put validation check for ready time
-	return True
+		if info["donation_id"] != key:
+			print("Invalid donation id: ", key)
+			valid = False
+
+		if info["quantity"] <= 0:
+			print("Invalid quantity for: ", key)
+			valid = False
+
+	return valid
 
 
 
