@@ -1,0 +1,43 @@
+{
+	"donations": {
+		"D001" : {
+				"donation_id" : "D001",
+				"donor_name" : "Good Will",
+				"food_type" : "Cereal",
+				"pickup_area" : "Torrance",
+				"quantity" : 20,
+				"expiry" : 7,
+				"ready_time" : "14:30"
+		},
+		"D002": {
+				"donation_id" : "D002",
+				"donor_name" : "Salvation Army",
+				"food_type" : "Milk",
+				"pickup_area" : "Carson",
+				"quantity" : 10,
+				"expiry" : 5,
+				"ready_time" : "12:30"
+		}
+	},
+	
+	"recipients": {
+			"R001" : {
+					"recipient_id" : "R001",
+					"organization_name" : "YMCA",
+					"capacity" : 100,
+					"accepted_food_types" : "Milk",
+					"location" : "Torrance",
+					"closing_time" : "17:30"
+			}
+	},
+	"volunteers" : {
+				"V001" : {
+						"volunteer_id" : "V001",
+						"location" : "Torrance",
+						"max_pickups" : 3,
+						"vehicle_cap" : 10,
+						"availability" : "available"
+
+				}
+	}
+}
