@@ -10,14 +10,20 @@ def load_data(filename):
 
 	return donations, recipients, volunteers
 
-# Function to check for duplicate IDs
+# Function to validate all attributes of donations dictionary
 
-def add_donation_id(donation_id):
-	if donation_id in donations:
-		print("Duplicate ticket id: ", donation_id)
-		return False
-	donations["donation_id"].add(donation_id)
+def validate_donations(donations):
+	for donation in donations:
+		if donation_id in donations["id"]:
+			print("Donation id exists: ", donation_id)
+			return False
+
+		if quantity in donations["quantity"] < 0:
+			print("There is nothing left: ", quantity)
+			return False
+		#eventually put validation check for ready time
 	return True
+
 
 
 # Import all data structures/data from main.py

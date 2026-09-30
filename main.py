@@ -17,7 +17,7 @@ def main():
 	print(volunteers)
 	print()
 	
-	functions.add_donation_id("D001")
+	functions.validate_donations(donations)
 
 
 if __name__ == "__main__":
