@@ -15,6 +15,10 @@ def main():
 	print(donations)
 	print(recipients)
 	print(volunteers)
+	print()
+	
+	functions.add_donation_id("D001")
+
 
 if __name__ == "__main__":
 	main()

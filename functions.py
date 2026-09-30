@@ -10,7 +10,14 @@ def load_data(filename):
 
 	return donations, recipients, volunteers
 
+# Function to check for duplicate IDs
 
+def add_donation_id(donation_id):
+	if donation_id in donations:
+		print("Duplicate ticket id: ", donation_id)
+		return False
+	donations["donation_id"].add(donation_id)
+	return True
 
 
 # Import all data structures/data from main.py
