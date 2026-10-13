@@ -36,7 +36,8 @@
 						"location" : "Torrance",
 						"max_pickups" : 3,
 						"vehicle_cap" : 10,
-						"availability" : "available"
+						"availability_start" : "05:00",
+						"availability_end" : "20:45"
 
 				}
 	}

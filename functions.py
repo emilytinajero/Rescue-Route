@@ -91,21 +91,44 @@ def validate_recipients(recipients):
 def validate_volunteers(volunteers):
 	valid = True
 	for key, info in volunteers.items():
-		
+
+		# validates volunteer id
 		if info["volunteer_id"] != key:
 			print("Invalid volunteer id: ", key)
 			valid = False
+		# validates vehicle cap provided
 		if not info["vehicle_cap"]:
 			print(f"No vehicle cap was provided for volunteer {key}.\n")
 			valid = False
+		# validates max pickups provided
 		if not info["max_pickups"]:
 			print(f"Max pickups not provided for volunteer {key}.\n")
 			valid = False
+		#validates location is provided
 		if not info["location"]:
 			print(f"Location not provided for volunteer {key}.\n")
 			valid = False
-		if not info["availability"]:
-			print(f"No availability provided for volunteer {key}.\n")
+		# validates start availability is provided
+		if not info["availability_start"]:
+			print(f"No starting availability provided for volunteer {key}.\n")
+			valid = False
+		# validates end availability time is provided
+		if not info["availability_end"]:
+			print(f"No ending availability provided for volunteer {key}.\n")
+			valid = False
+		# validates start time format
+		try:
+			datetime.strptime(info[availability_start], "%H:%M")
+
+		except ValueError:
+			print(f"Availability start time not formatted correctly for volunteer {key}\n")
+			valid = False
+		# validates end time format
+		try:
+			datetime.strptime(info[availability_end], "%H:%M")
+
+		except ValueError:
+			print(f"Availability end time not formatted correctly for volunteer {key}.")
 			valid = False
 	return valid
 
