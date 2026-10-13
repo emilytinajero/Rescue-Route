@@ -138,6 +138,17 @@ def validate_all(donations, recipients, volunteers):
 	volunteers_valid = validate_volunteers(volunteers)
 
 	return donations_valid and recipients_valid and volunteers_valid
+
+# okay now i need to see if donation can be matched with recipient
+def donation_matches_with_recipient(donations, recipients):
+	# food type match
+	
+
+# and can donation be transported by the volunteer
+
+
+
+
 # Import all data structures/data from main.py
 # This file will be used to define all necessary functions
 
