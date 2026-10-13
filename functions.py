@@ -95,6 +95,18 @@ def validate_volunteers(volunteers):
 		if info["volunteer_id"] != key:
 			print("Invalid volunteer id: ", key)
 			valid = False
+		if not info["vehicle_cap"]:
+			print(f"No vehicle cap was provided for volunteer {key}.\n")
+			valid = False
+		if not info["max_pickups"]:
+			print(f"Max pickups not provided for volunteer {key}.\n")
+			valid = False
+		if not info["location"]:
+			print(f"Location not provided for volunteer {key}.\n")
+			valid = False
+		if not info["availability"]:
+			print(f"No availability provided for volunteer {key}.\n")
+			valid = False
 	return valid
 
 # Import all data structures/data from main.py
