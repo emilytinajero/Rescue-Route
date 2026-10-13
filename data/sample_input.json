@@ -1,0 +1,59 @@
+
+{
+  "donations": [
+    {
+      "donation_id": "D001",
+      "donor_name": "Campus Cafe",
+      "food_type": "Prepared Meals",
+      "quantity": 20,
+      "pickup_area": "Fullerton",
+      "ready_time": "12:00",
+      "expiry_time": "17:00"
+    },
+    {
+      "donation_id": "D002",
+      "donor_name": "Fresh Market",
+      "food_type": "Produce",
+      "quantity": 15,
+      "pickup_area": "Anaheim",
+      "ready_time": "13:00",
+      "expiry_time": "18:00"
+    }
+  ],
+  "recipients": [
+    {
+      "recipient_id": "R001",
+      "organization_name": "Community Shelter",
+      "accepted_food_types": ["Prepared Meals"],
+      "capacity": 50,
+      "area": "Fullerton",
+      "closing_time": "19:00"
+    },
+    {
+      "recipient_id": "R002",
+      "organization_name": "Food Pantry",
+      "accepted_food_types": ["Produce"],
+      "capacity": 30,
+      "area": "Anaheim",
+      "closing_time": "18:00"
+    }
+  ],
+  "volunteers": [
+    {
+      "volunteer_id": "V001",
+      "vehicle_capacity": 30,
+      "area": "Fullerton",
+      "available_start": "12:00",
+      "available_end": "19:00",
+      "max_pickups": 3
+    },
+    {
+      "volunteer_id": "V002",
+      "vehicle_capacity": 20,
+      "area": "Anaheim",
+      "available_start": "13:00",
+      "available_end": "18:00",
+      "max_pickups": 2
+    }
+  ]
+}
