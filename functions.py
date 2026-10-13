@@ -57,11 +57,32 @@ def validate_recipients(recipients):
 	valid = True
 	for key, info in recipients.items():
 
+		# validates recipient id provided
 		if info["recipient_id"] != key:
 			print("Invalid recipient id: ", key)
 			valid = False
+		# validates capacity is more than 0
 		if info["capacity"] <= 0:
-			print("This recipient does not has no capacity")
+			print(f"Recipient {key} has no capacity\n")
+			valid = False
+		# validates food type was provided
+		if not info["accepted_food_types"]:
+			print(f"No accepted food types specified for recipient {key}.\n")
+			valid = False
+		# validates location was provided
+		if not info["location"]:
+			print(f"No location specified for recipient {key}.\n")
+			valid = False
+		# validates closing time was provided
+		if not info["closing_time"]:
+			print(f"Not closing time specified for recipient {key}\n")
+			valid = False
+		# validates closing time is in correct format
+		try:
+			datetime.strptime(info["closing_time"], "%H:%M")
+
+		except ValueError:
+			print(f"The provided closing time for recipient {key} is formatted incorrectly.\n")
 			valid = False
 	return valid
 
