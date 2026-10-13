@@ -2,6 +2,7 @@
 FIFO and Greedy scheduling algorithms
 """
 import matching
+import data_loader
 
 def find_first_match(donation, recipients, volunteers):
 
@@ -23,6 +24,9 @@ def fifo_schedule(donations, recipients, volunteers):
 
 	assignments = []
 
+	for volunteer in volunteers:
+		volunteer["current_pickups"] = 0
+
 	for donation in donations:
 		recipient, volunteer = find_first_match(
 							donation,
@@ -37,6 +41,9 @@ def fifo_schedule(donations, recipients, volunteers):
 					"volunteer_id" : volunteer["volunteer_id"],
 					"status" : "assigned"
 			}
+			# need to update the volunteers max pickups and recipients capacity
+			volunteer["current_pickups"] += 1
+			recipient["capacity"] -= donation["quantity"]
 
 		else:
 			assignment = {
@@ -48,5 +55,7 @@ def fifo_schedule(donations, recipients, volunteers):
 		assignments.append(assignment)
 
 	return assignments
+
+
 
 
