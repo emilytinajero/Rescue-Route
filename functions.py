@@ -1,4 +1,6 @@
 import json
+from datetime import datetime
+
 
 def load_data(filename):
 	with open(filename, "r") as file:
@@ -35,10 +37,17 @@ def validate_donations(donations):
 		if not info["expiry"]:
 			print(f"No expiration for donation {key} was provided\n")
 			valid = False
-		# validates ready time format and if its there
+		# validates that a ready time was provided
 		if not info["ready_time"]:
 			print("No ready time was provided for donation: ", key)
 			print()
+			valid = False
+		# validates ready time was provided in the correct format
+		try:
+			datetime.strptime(info["ready_time"], "%H:%M")
+
+		except ValueError:
+			print(f"The provided ready time for donation {key} is formatted incorrectly.\n")
 			valid = False
 	return valid
 

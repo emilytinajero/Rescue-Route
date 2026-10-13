@@ -22,6 +22,11 @@ def main():
 	else:
 		print("Donation validation failed")
 
+	print()
+	if functions.validate_recipients(recipients):
+		print("Recipients are valid")
+	else:
+		print("Recipient validation failed")
 
 if __name__ == "__main__":
 	main()

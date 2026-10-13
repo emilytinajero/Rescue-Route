@@ -7,12 +7,12 @@
 				"pickup_area" : "Torrance",
 				"quantity" : 20,
 				"expiry" : 7,
-				"ready_time" : "14:30"
+				"ready_time" : "26:30"
 		},
 		"D002": {
 				"donation_id" : "D002",
 				"donor_name" : "Salvation Army",
-				"food_type" : "Milk",
+				"food_type" : "",
 				"pickup_area" : "Carson",
 				"quantity" : 10,
 				"expiry" : 5,
