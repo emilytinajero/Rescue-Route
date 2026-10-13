@@ -118,20 +118,26 @@ def validate_volunteers(volunteers):
 			valid = False
 		# validates start time format
 		try:
-			datetime.strptime(info[availability_start], "%H:%M")
+			datetime.strptime(info["availability_start"], "%H:%M")
 
 		except ValueError:
 			print(f"Availability start time not formatted correctly for volunteer {key}\n")
 			valid = False
 		# validates end time format
 		try:
-			datetime.strptime(info[availability_end], "%H:%M")
+			datetime.strptime(info["availability_end"], "%H:%M")
 
 		except ValueError:
 			print(f"Availability end time not formatted correctly for volunteer {key}.")
 			valid = False
 	return valid
 
+def validate_all(donations, recipients, volunteers):
+	donations_valid = validate_donations(donations)
+	recipients_valid = validate_recipients(recipients)
+	volunteers_valid = validate_volunteers(volunteers)
+
+	return donations_valid and recipients_valid and volunteers_valid
 # Import all data structures/data from main.py
 # This file will be used to define all necessary functions
 

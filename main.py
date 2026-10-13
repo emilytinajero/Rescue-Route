@@ -17,16 +17,10 @@ def main():
 	print(volunteers)
 	print()
 	
-	if functions.validate_donations(donations):
-		print("Donations are valid")
+	if functions.validate_all(donations, recipients, volunteers):
+		print("All data is valid!\n")
 	else:
-		print("Donation validation failed")
-
-	print()
-	if functions.validate_recipients(recipients):
-		print("Recipients are valid")
-	else:
-		print("Recipient validation failed")
+		print("Invalid data.\n")
 
 if __name__ == "__main__":
 	main()

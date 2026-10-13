@@ -25,7 +25,7 @@
 					"recipient_id" : "R001",
 					"organization_name" : "YMCA",
 					"capacity" : 100,
-					"accepted_food_types" : "Milk",
+					"accepted_food_types" : ["Milk", "Candy"],
 					"location" : "Torrance",
 					"closing_time" : "17:30"
 			}
