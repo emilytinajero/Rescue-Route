@@ -21,3 +21,27 @@ def donations_assigned(assignments):
 			count += 1
 
 	return count
+
+"""
+Function to calculate unassigned donations
+"""
+def unassigned_donations(assignments):
+	count = 0
+
+	for assignment in assignments:
+		if assignment["status"] == "unassigned":
+			count += 1
+
+	return count
+
+"""
+Function to calculate total quantity successfully assigned
+"""
+def food_quantity_rescued(assignments, donations)
+	count = 0
+
+	for assignment in assignments:
+		if assignment["status"] == "assigned":
+			count += donations["quantity"]
+
+	return count
