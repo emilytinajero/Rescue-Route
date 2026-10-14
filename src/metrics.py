@@ -7,41 +7,71 @@ from datetime import datetime
 """
 Function to calculate donations recieved
 """
-def donations_recieved(donations):
+def donations_received(donations):
 	return len(donations)
 
 """
 Function to calculate donations assigned
 """
 def donations_assigned(assignments):
-	count = 0
+	assigned_donations = 0
 
 	for assignment in assignments:
 		if assignment["status"] == "assigned":
-			count += 1
+			assigned_donations += 1
 
-	return count
+	return assigned_donations
 
 """
 Function to calculate unassigned donations
 """
 def unassigned_donations(assignments):
-	count = 0
+	donations_unassigned = 0
 
 	for assignment in assignments:
 		if assignment["status"] == "unassigned":
-			count += 1
+			donations_unassigned += 1
 
-	return count
+	return donations_unassigned
 
 """
 Function to calculate total quantity successfully assigned
 """
-def food_quantity_rescued(assignments, donations)
-	count = 0
+def food_quantity_rescued(assignments, donations):
+	rescued_food = 0
 
 	for assignment in assignments:
 		if assignment["status"] == "assigned":
-			count += donations["quantity"]
+			rescued_food += donations["quantity"]
 
-	return count
+	return rescued_food
+
+"""
+Function to calculate food quantity at risk
+"""
+def food_quantity_at_risk(assignments, donations):
+	food_at_risk = 0
+
+	for assignment in assignments:
+		if assignment["status"] == "unassigned":
+			food_at_risk += donations["quantity"]
+
+	return food_at_risk
+
+"""
+Function for urgent rescue rate
+"""
+
+
+"""
+Function for recipient capacity utilization
+"""
+def recipient_capacity_utilization(assignments, donations):
+	recipient_capacity_utilization = 0
+
+	for assignment in assignments:
+		if assignment["status"] == "assigned":
+			recipient_capacity_utilization += donations["quantity"]
+			recipient_capacity_utilization = recipient_capacity_utilization // recipient["capacity"]
+
+	return recipient_capacity_utilization
