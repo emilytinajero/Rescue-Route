@@ -98,6 +98,8 @@ def greedy_schedule(donations, recipients, volunteers):
 
 	sorted_donations = sorted(donations, key=lambda donation : donation["expiry_time"])
 
+	priority_donation = sorted_donations[0]
+
 	for donation in sorted_donations:
 		recipient, volunteer = find_first_match(
 						donation,
@@ -136,7 +138,7 @@ def greedy_schedule(donations, recipients, volunteers):
 					"recipient_id" : None,
 					"volunteer_id" : None,
 					"scheduled_time" : None,
-					"decision_reason" : "something about being deferred",
+					"decision_reason" : matching.get_defered_message(donation, priority_donation),
 					"status" : "unassigned"
 			}
 
