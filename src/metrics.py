@@ -72,7 +72,7 @@ def recipient_capacity_utilization(assignments, donations):
 	for assignment in assignments:
 		if assignment["status"] == "assigned":
 			recipient_capacity_utilization += donations["quantity"]
-			recipient_capacity_utilization = recipient_capacity_utilization // recipient["capacity"]
+			recipient_capacity_utilization = recipient_capacity_utilization / recipients["capacity"]
 
 	return recipient_capacity_utilization
 
@@ -85,6 +85,6 @@ def volunteer_capacity_utilization(assignments, donations):
 	for assignment in assignments:
 		if assignment["status"] == "assigned":
 			volunteer_capacity_utilization += donations["quantity"]
-			volunteer_capacity_utilization = volunteer_capacity_utilization // volunteer["capacity"]
+			volunteer_capacity_utilization = volunteer_capacity_utilization / volunteers["capacity"]
 
 	return volunteer_capacity_utilization
