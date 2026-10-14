@@ -1,14 +1,14 @@
 """
 Module for lookup helper functions
 """
-def donation_lookup(donations):
+def create_donation_lookup(donations):
 	donation_lookup = {}
 
 	for donation in donations:
 		donation_lookup[donation["donation_id"]] = donation
 	return donation_lookup
 
-def recipient_lookup(recipients):
+def create_recipient_lookup(recipients):
 	recipient_lookup = {}
 
 	for recipient in recipients:
@@ -16,7 +16,7 @@ def recipient_lookup(recipients):
 
 	return recipient_lookup
 
-def volunteer_lookup(volunteers):
+def create_volunteer_lookup(volunteers):
 	volunteer_lookup = {}
 
 	for volunteer in volunteers:
