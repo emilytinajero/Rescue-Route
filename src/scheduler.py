@@ -75,24 +75,34 @@ def greedy_schedule(donations, recipients, volunteers):
 	assignments = []
 
 	for volunteer in volunteers:
-		volunteers["current_pickups"] = 0
+		volunteer["current_pickups"] = 0
 
 	sorted_donations = sorted(donations, key=lambda donation : donation["expiry_time"])
 
 	for donation in sorted_donations:
 		recipient, volunteer = find_first_match(
-						donations,
+						donation,
 						recipients,
 						volunteers
 		)
 
 		if recipient is not None:
+
+			decision_reason = f"Donation {donation['donation_id']} was assigned to "
+					  f"{recipient['organization_name']} with "
+					  f"volunteer {volunteer['volunteer_id']} because "
+					  f"it has the earliest expiration time among remaining donations"
+					  f"under the greedy urgency-first strategy. {recipient['organization_name']} "
+					  f"accepts {recipient['accepted_food_types']}, "
+					  f"had sufficient capacity available, and volunteer {volunteer['volunteer_id']} "
+				          f"could transport the donation quantity."
+
 			assigment = {
 					"donation_id" : donation["donation_id"],
 					"recipient_id" : recipient["recipient_id"],
 					"volunteer_id" : volunteer["volunteer_id"],
 					"scheduled_time" : donation["ready_time"],
-					"decision_reason" : (),
+					"decision_reason" : decision_reason,
 					"status" : "assigned"
 			}
 
