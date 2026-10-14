@@ -43,6 +43,8 @@ class TestSampleScenarios(unittest.TestCase):
         self.donations = {d["donation_id"]: d for d in self.data["donations"]}
         self.recipients = {r["recipient_id"]: r for r in self.data["recipients"]}
         self.volunteers = {v["volunteer_id"]: v for v in self.data["volunteers"]}
+        for recipient in self.recipients.values():
+            recipient["remaining_capacity"] = recipient["capacity"]
 
     def any_feasible(self, donation_id):
         donation = self.donations[donation_id]
