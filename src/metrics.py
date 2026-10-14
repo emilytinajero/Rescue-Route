@@ -75,3 +75,16 @@ def recipient_capacity_utilization(assignments, donations):
 			recipient_capacity_utilization = recipient_capacity_utilization // recipient["capacity"]
 
 	return recipient_capacity_utilization
+
+"""
+Function to calculate volunteer capacity utlization
+"""
+def volunteer_capacity_utilization(assignments, donations):
+	volunteer_capacity_utilization = 0
+
+	for assignment in assignments:
+		if assignment["status"] == "assigned":
+			volunteer_capacity_utilization += donations["quantity"]
+			volunteer_capacity_utilization = volunteer_capacity_utilization // volunteer["capacity"]
+
+	return volunteer_capacity_utilization
