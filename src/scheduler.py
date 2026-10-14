@@ -59,14 +59,24 @@ def fifo_schedule(donations, recipients, volunteers):
 			recipient["remaining_capacity"] -= donation["quantity"]
 
 		else:
+			rejection_reasons = []
+
+			for recipient in recipients:
+				for volunteer in volunteers:
+
+					rejection_reasons.extend( matching.get_rejection_reasons(donation, recipient, volunteer))
+			decision_reason = "; ".join(set(rejection_reasons))
+
+		
 			assignment = {
 					"donation_id" : donation["donation_id"],
 					"recipient_id" : None,
 					"volunteer_id" : None,
 					"scheduled_time" : None,
-					"decision_reason" : "No feasible match", # replace with rejection reason from matching.py later
+					"decision_reason" : decision_reason, # replace with rejection reason from matching.py later
 					"status" : "unassigned"
 			}
+		
 		assignments.append(assignment)
 
 	return assignments
