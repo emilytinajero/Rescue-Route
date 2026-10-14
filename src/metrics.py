@@ -70,7 +70,25 @@ def food_quantity_at_risk(assignments, donations):
 """
 Function for urgent rescue rate
 """
+def urgent_rate_rescue(assignments, donations):
 
+	sorted_donations = sorted(donations, key=lambda donation : donation["expiry_time"])
+	urgent_count = max(1, len(donations) // 4)
+
+	urgent_donations = sorted_donations[:urgent_count]
+
+	urgent_ids = set()
+
+	for donation in urgent_donations:
+		urgent_ids.add(donation["donation_id"])
+
+	assigned_urgent = 0
+
+	for assignment in assignments:
+		if (assignment["status"] == "assigned" and assignment["donation_id"] in urgent_ids):
+			assigned_urgent += 1
+
+	return (assigned_urgent / urgent_count) * 100
 
 """
 Function for recipient capacity utilization
@@ -110,64 +128,4 @@ def volunteer_capacity_utilization(assignments, donations, volunteers):
 			assigned_quantity += (donation_id_lookup[donation_id]["quantity"])
 
 	return (assigned_quantity / total_volunteer_capacity) * 100
-
-"""
-test code
-"""
-
-data = data_loader.load_data("../data/sample_input.json")
-
-print("\n==============================")
-print("FIFO SCHEDULER TEST")
-print("===============================")
-
-print("FIFO donations loaded:", len(data["donations"]))
-print()
-fifo_assignments = scheduler.fifo_schedule(data["donations"], data["recipients"], data["volunteers"])
-
-print("\nFIFO Metrics")
-print()
-print("Donations Received: ", donations_received(data["donations"]))
-print()
-print("Donations Assigned: ", donations_assigned(fifo_assignments))
-
-print()
-print("Donations Unassigned: ", unassigned_donations(fifo_assignments))
-print()
-
-print("Food Quantity Rescued: ", food_quantity_rescued(fifo_assignments, data["donations"]))
-print()
-
-print("Recipient Capacity Utilization: ", recipient_capacity_utilization(fifo_assignments, data["donations"], data["recipients"]), "%")
-print()
-
-
-print("\n========================")
-print("GREEDY SCHEDULER TEST")
-print("=========================")
-
-data = data_loader.load_data("../data/sample_input.json")
-
-print("Greedy donations loaded: ", len(data["donations"]))
-print()
-greedy_assignments = scheduler.greedy_schedule(data["donations"], data["recipients"], data["volunteers"])
-
-print("\nGreedy Metrics")
-print()
-print("Donations Received: ", donations_received(data["donations"]))
-print()
-
-print("Donations Assigned: ", donations_assigned(greedy_assignments))
-print()
-
-print("Donations Unassigned: ", unassigned_donations(greedy_assignments))
-
-print("Food Quantity Rescued: ", food_quantity_rescued(greedy_assignments, data["donations"]))
-print()
-
-print("Food Quantity at Risk: ", food_quantity_at_risk(greedy_assignments, data["donations"]))
-print()
-
-print("Recipient Capacity Utilization: ", volunteer_capacity_utilization(greedy_assignments, data["donations"], data["volunteers"]), "%")
-
 
