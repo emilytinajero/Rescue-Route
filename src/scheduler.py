@@ -35,17 +35,20 @@ def fifo_schedule(donations, recipients, volunteers):
 					)
 
 		if recipient is not None:
+
+			decision_reason = (
+				f"Donation {donation['donation_id']} was assigned "
+				f"to {recipient['organization_name']} with volunteer "
+				f"{volunteer['volunteer_id']} because it was the "
+				f"first feasible recipient-volunteer match found under FIFO scheduling."
+			)
+
 			assignment = {
 					"donation_id" : donation["donation_id"],
 					"recipient_id" : recipient["recipient_id"],
 					"volunteer_id" : volunteer["volunteer_id"],
 					"scheduled_time" : donation["ready_time"],
-					"decision_reason" : (
-						f"Donation {donation['donation_id']} was assigned "
-						f"to {recipient['organization_name']} with volunteer "
-						f"{volunteer['volunteer_id']} because it was the "
-						f" first feasible recipient-volunteer match found under FIFO scheduling."
-					),
+					"decision_reason" : decision_reason,
 					"status" : "assigned"
 			}
 			# need to update the volunteers max pickups and recipients capacity
@@ -88,16 +91,18 @@ def greedy_schedule(donations, recipients, volunteers):
 
 		if recipient is not None:
 
-			decision_reason = f"Donation {donation['donation_id']} was assigned to "
-					  f"{recipient['organization_name']} with "
-					  f"volunteer {volunteer['volunteer_id']} because "
-					  f"it has the earliest expiration time among remaining donations"
-					  f"under the greedy urgency-first strategy. {recipient['organization_name']} "
-					  f"accepts {recipient['accepted_food_types']}, "
-					  f"had sufficient capacity available, and volunteer {volunteer['volunteer_id']} "
-				          f"could transport the donation quantity."
+			decision_reason = (
+					f"Donation {donation['donation_id']} was assigned to "
+					f"{recipient['organization_name']} with "
+					f"volunteer {volunteer['volunteer_id']} because "
+					f"it had the earliest expiration time among remaining donations"
+					f"under the greedy urgency-first strategy. {recipient['organization_name']} "
+					f"accepts {donation['food_type']}, "
+					f"had sufficient capacity available, and volunteer {volunteer['volunteer_id']} "
+				        f"could transport the donation quantity."
+			)
 
-			assigment = {
+			assignment = {
 					"donation_id" : donation["donation_id"],
 					"recipient_id" : recipient["recipient_id"],
 					"volunteer_id" : volunteer["volunteer_id"],
@@ -122,3 +127,4 @@ def greedy_schedule(donations, recipients, volunteers):
 		assignments.append(assignment)
 
 	return assignments
+
