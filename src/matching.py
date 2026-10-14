@@ -51,6 +51,7 @@ def is_feasible(donation, recipient, volunteer):
         and check_capacity(donation, recipient, volunteer)
         and check_location(donation, recipient, volunteer)
         and check_time_compatibility(donation, recipient, volunteer)
+        and check_volunteer_pickups(volunteer)
     )
 
 
@@ -76,4 +77,34 @@ def get_rejection_reasons(donation, recipient, volunteer):
     if not check_time_compatibility(donation, recipient, volunteer):
         reasons.append("No overlapping time window")
 
+
+    if not check_volunteer_pickups(volunteer):
+        reasons.append(
+            f"Volunteer {volunteer['volunteer_id']} has reached "
+            f"the maximum of {volunteer['max_pickups']} pickups"
+        )
     return reasons
+
+def check_volunteer_pickups(volunteer):
+    current_pickups = volunteer.get("current_pickups", 0)
+    max_pickups = volunteer["max_pickups"]
+
+    return current_pickups < max_pickups 
+
+
+def get_defered_message(donation, priority_donation):
+    """
+    Explain why a donation was considered after another
+    donation under the greedy scheduling strategy.
+    """
+
+    donation_id = donation["donation_id"]
+    priority_id = priority_donation["donation_id"]
+
+    return (
+        f"Donation {donation_id} was considered after "
+        f"Donation {priority_id} because {priority_id} "
+        f"had higher priority under the urgency-first "
+        f"greedy scheduling rule."
+    )
+

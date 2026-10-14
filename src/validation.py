@@ -131,6 +131,15 @@ def validate_volunteer(volunteer):
     if type(volunteer["max_pickups"]) is not int or volunteer["max_pickups"] <= 0:
         raise ValueError("Maximum pickups must be a positive integer")
 
+
+    # Validate current pickup count if provided
+    current_pickups = volunteer.get("current_pickups", 0)
+
+    if type(current_pickups) is not int or current_pickups < 0:
+        raise ValueError(
+            "Current pickups must be a non-negative integer"
+        )
+
     # Validate availability times
     validate_time(volunteer["available_start"])
     validate_time(volunteer["available_end"])
