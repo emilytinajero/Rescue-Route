@@ -129,3 +129,27 @@ def volunteer_capacity_utilization(assignments, donations, volunteers):
 
 	return (assigned_quantity / total_volunteer_capacity) * 100
 
+"""
+Function to calculate FIFO vs Greedy Comparison
+"""
+def fifo_vs_greedy(fifo_assignments, greedy_assignments, donations):
+	donations_assigned_difference = (
+		donations_assigned(greedy_assignments) - donations_assigned(fifo_assignments)
+	)
+
+	rescued_difference = (
+
+		food_quantity_rescued(greedy_assignments, donations) - food_quantity_rescued(fifo_assignments, donations)
+	)
+
+	urgent_difference = (
+		urgent_rate_rescue(greedy_assignments, donations) - urgent_rate_rescue(fifo_assignments, donations)
+	)
+
+	return {
+		"donations_assigned_difference" : donations_assigned_difference,
+		"rescued_difference" : rescued_difference,
+		"urgent_difference" : urgent_difference
+	}
+
+
