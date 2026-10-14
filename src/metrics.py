@@ -4,8 +4,6 @@ Module that calculates all required metrics and returns them
 
 from datetime import datetime
 import lookup
-import data_loader
-import scheduler
 
 """
 Function to calculate donations recieved
