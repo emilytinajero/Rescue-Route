@@ -151,5 +151,3 @@ def fifo_vs_greedy(fifo_assignments, greedy_assignments, donations):
 		"rescued_difference" : rescued_difference,
 		"urgent_difference" : urgent_difference
 	}
-
-
