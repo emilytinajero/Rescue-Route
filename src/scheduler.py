@@ -24,6 +24,9 @@ def fifo_schedule(donations, recipients, volunteers):
 
 	assignments = []
 
+	for recipient in recipients:
+		recipient["remaining_capacity"] = recipient["capacity"]
+
 	for volunteer in volunteers:
 		volunteer["current_pickups"] = 0
 
@@ -53,7 +56,7 @@ def fifo_schedule(donations, recipients, volunteers):
 			}
 			# need to update the volunteers max pickups and recipients capacity
 			volunteer["current_pickups"] += 1
-			recipient["capacity"] -= donation["quantity"]
+			recipient["remaining_capacity"] -= donation["quantity"]
 
 		else:
 			assignment = {
@@ -76,6 +79,9 @@ Chooses based on closest expiration
 def greedy_schedule(donations, recipients, volunteers):
 
 	assignments = []
+
+	for recipient in recipients:
+		recipient["remaining_capacity"] = recipient["capacity"]
 
 	for volunteer in volunteers:
 		volunteer["current_pickups"] = 0
@@ -112,7 +118,7 @@ def greedy_schedule(donations, recipients, volunteers):
 			}
 
 			volunteer["current_pickups"] += 1
-			recipient["capacity"] -= donation["quantity"]
+			recipient["remaining_capacity"] -= donation["quantity"]
 
 		else:
 			assignment = {
