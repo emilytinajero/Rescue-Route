@@ -12,7 +12,7 @@ def check_capacity(donation, recipient, volunteer):
     quantity = donation["quantity"]
 
     return (
-        quantity <= recipient["capacity"]
+        quantity <= recipient["remaining_capacity"]
         and quantity <= volunteer["vehicle_capacity"]
     )
 
