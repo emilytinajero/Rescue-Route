@@ -3,6 +3,7 @@ Module that calculates all required metrics and returns them
 """
 
 from datetime import datetime
+import lookup
 
 """
 Function to calculate donations recieved
@@ -40,9 +41,12 @@ Function to calculate total quantity successfully assigned
 def food_quantity_rescued(assignments, donations):
 	rescued_food = 0
 
+	donation_id_lookup = lookup.donation_lookup(donations)
+
 	for assignment in assignments:
 		if assignment["status"] == "assigned":
-			rescued_food += donations["quantity"]
+			donation_id = assignment["donation_id"]
+			rescued_food += (donation_id_lookup[donation_id]["quantity"]
 
 	return rescued_food
 
@@ -52,9 +56,12 @@ Function to calculate food quantity at risk
 def food_quantity_at_risk(assignments, donations):
 	food_at_risk = 0
 
+	donation_id_lookup = lookup.donation_lookup(donations)
+
 	for assignment in assignments:
 		if assignment["status"] == "unassigned":
-			food_at_risk += donations["quantity"]
+			donation_id = assignment["donation_id"]
+			food_at_risk += (donation_id_lookup[donation_id]["quantity"]
 
 	return food_at_risk
 
