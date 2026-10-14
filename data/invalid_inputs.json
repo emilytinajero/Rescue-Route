@@ -1,0 +1,1528 @@
+{
+  "_about": "Each case breaks exactly one validation rule. validate_dataset(case['data']) should raise ValueError containing case['expected_error'].",
+  "cases": [
+    {
+      "name": "missing_category",
+      "description": "Top-level 'volunteers' list is missing",
+      "expected_error": "Missing or invalid category: volunteers",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ]
+      }
+    },
+    {
+      "name": "category_not_list",
+      "description": "'donations' is an object instead of a list",
+      "expected_error": "Missing or invalid category: donations",
+      "data": {
+        "donations": {
+          "D001": "x"
+        },
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_missing_field",
+      "description": "Donation has no food_type",
+      "expected_error": "Missing required field: food_type",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_blank_id",
+      "description": "Donation ID is only whitespace",
+      "expected_error": "Invalid donation_id",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "   ",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_blank_donor",
+      "description": "Donor name is an empty string",
+      "expected_error": "Invalid donor_name",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_area_not_string",
+      "description": "Pickup area is a number",
+      "expected_error": "Invalid pickup_area",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": 92831,
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_zero_quantity",
+      "description": "Quantity is 0",
+      "expected_error": "Donation quantity must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 0,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_negative_quantity",
+      "description": "Quantity is negative",
+      "expected_error": "Donation quantity must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": -5,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_quantity_string",
+      "description": "Quantity is the string \"20\"",
+      "expected_error": "Donation quantity must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": "20",
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_quantity_float",
+      "description": "Quantity is a decimal",
+      "expected_error": "Donation quantity must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20.5,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_quantity_bool",
+      "description": "Quantity is true (bool is a subclass of int in Python)",
+      "expected_error": "Donation quantity must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": true,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_bad_hour",
+      "description": "Ready time has hour 25",
+      "expected_error": "Invalid time: 25:00",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "25:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_bad_minute",
+      "description": "Expiry time has minute 75",
+      "expected_error": "Invalid time: 16:75",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "16:75"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_time_wrong_format",
+      "description": "Ready time uses 12-hour format",
+      "expected_error": "Invalid time: 12pm",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12pm",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_time_not_string",
+      "description": "Ready time is a number",
+      "expected_error": "Time must be a string",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": 1200,
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_already_expired",
+      "description": "Expiry time is before ready time",
+      "expected_error": "Expiry must be after ready time",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "15:00",
+            "expiry_time": "14:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "donation_zero_shelf_life",
+      "description": "Expiry time equals ready time (zero shelf life)",
+      "expected_error": "Expiry must be after ready time",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "15:00",
+            "expiry_time": "15:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "recipient_missing_field",
+      "description": "Recipient has no capacity",
+      "expected_error": "Missing recipient field: capacity",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "recipient_blank_name",
+      "description": "Organization name is blank",
+      "expected_error": "Invalid recipient field: organization_name",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": " ",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "recipient_blank_area",
+      "description": "Recipient area is empty",
+      "expected_error": "Invalid recipient field: area",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "recipient_food_types_empty",
+      "description": "Accepted food types is an empty list",
+      "expected_error": "Accepted food types must be a nonempty list",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "recipient_food_types_string",
+      "description": "Accepted food types is a string instead of a list",
+      "expected_error": "Accepted food types must be a nonempty list",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": "Prepared Meals",
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "recipient_food_type_blank_entry",
+      "description": "Accepted food types contains a blank entry",
+      "expected_error": "Invalid accepted food type",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals",
+              ""
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "recipient_zero_capacity",
+      "description": "Recipient capacity is 0",
+      "expected_error": "Recipient capacity must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 0,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "recipient_capacity_float",
+      "description": "Recipient capacity is a decimal",
+      "expected_error": "Recipient capacity must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 49.5,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "recipient_bad_closing_time",
+      "description": "Closing time is '7pm'",
+      "expected_error": "Invalid time: 7pm",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "7pm"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "volunteer_missing_field",
+      "description": "Volunteer has no max_pickups",
+      "expected_error": "Missing volunteer field: max_pickups",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00"
+          }
+        ]
+      }
+    },
+    {
+      "name": "volunteer_blank_id",
+      "description": "Volunteer ID is blank",
+      "expected_error": "Invalid volunteer field: volunteer_id",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "volunteer_zero_vehicle_capacity",
+      "description": "Vehicle capacity is 0",
+      "expected_error": "Vehicle capacity must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 0,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "volunteer_negative_vehicle_capacity",
+      "description": "Vehicle capacity is negative",
+      "expected_error": "Vehicle capacity must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": -5,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "volunteer_zero_max_pickups",
+      "description": "Max pickups is 0",
+      "expected_error": "Maximum pickups must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "volunteer_max_pickups_string",
+      "description": "Max pickups is the string \"3\"",
+      "expected_error": "Maximum pickups must be a positive integer",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": "3"
+          }
+        ]
+      }
+    },
+    {
+      "name": "volunteer_bad_start_time",
+      "description": "Availability start is '24:00'",
+      "expected_error": "Invalid time: 24:00",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "24:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "volunteer_end_before_start",
+      "description": "Availability ends before it starts",
+      "expected_error": "Volunteer availability end must be after start",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "18:00",
+            "available_end": "12:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "volunteer_end_equals_start",
+      "description": "Availability window has zero length",
+      "expected_error": "Volunteer availability end must be after start",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "12:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "duplicate_donation_id",
+      "description": "Two donations share ID D001",
+      "expected_error": "Duplicate ID found: D001",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          },
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "duplicate_recipient_id",
+      "description": "Two recipients share ID R001",
+      "expected_error": "Duplicate ID found: R001",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          },
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    },
+    {
+      "name": "duplicate_volunteer_id",
+      "description": "Two volunteers share ID V001",
+      "expected_error": "Duplicate ID found: V001",
+      "data": {
+        "donations": [
+          {
+            "donation_id": "D001",
+            "donor_name": "Campus Cafe",
+            "food_type": "Prepared Meals",
+            "quantity": 20,
+            "pickup_area": "Fullerton",
+            "ready_time": "12:00",
+            "expiry_time": "17:00"
+          }
+        ],
+        "recipients": [
+          {
+            "recipient_id": "R001",
+            "organization_name": "Community Shelter",
+            "accepted_food_types": [
+              "Prepared Meals"
+            ],
+            "capacity": 50,
+            "area": "Fullerton",
+            "closing_time": "19:00"
+          }
+        ],
+        "volunteers": [
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          },
+          {
+            "volunteer_id": "V001",
+            "vehicle_capacity": 30,
+            "area": "Fullerton",
+            "available_start": "12:00",
+            "available_end": "19:00",
+            "max_pickups": 3
+          }
+        ]
+      }
+    }
+  ]
+}
