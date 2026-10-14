@@ -42,7 +42,7 @@ class TestMatching(unittest.TestCase):
 
     def test_insufficient_recipient_capacity(self):
         recipient = self.recipient.copy()
-        recipient["capacity"] = 10
+        recipient["remaining_capacity"] = 10
 
         self.assertFalse(
             check_capacity(self.donation, recipient, self.volunteer)
