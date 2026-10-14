@@ -65,11 +65,50 @@ def fifo_schedule(donations, recipients, volunteers):
 
 	return assignments
 
+
 """
 Greedy schedule algorithim
-Chooses based on closest expiration 
+Chooses based on closest expiration
 """
 def greedy_schedule(donations, recipients, volunteers):
-		
 
+	assignments = []
 
+	for volunteer in volunteers:
+		volunteers["current_pickups"] = 0
+
+	sorted_donations = sorted(donations, key=lambda donation : donation["expiry_time"])
+
+	for donation in sorted_donations:
+		recipient, volunteer = find_first_match(
+						donations,
+						recipients,
+						volunteers
+		)
+
+		if recipient is not None:
+			assigment = {
+					"donation_id" : donation["donation_id"],
+					"recipient_id" : recipient["recipient_id"],
+					"volunteer_id" : volunteer["volunteer_id"],
+					"scheduled_time" : donation["ready_time"],
+					"decision_reason" : (),
+					"status" : "assigned"
+			}
+
+			volunteer["current_pickups"] += 1
+			recipient["capacity"] -= donation["quantity"]
+
+		else:
+			assignment = {
+					"donation_id" : donation["donation_id"],
+					"recipient_id" : None,
+					"volunteer_id" : None,
+					"scheduled_time" : None,
+					"decision_reason" : "something about being deferred",
+					"status" : "unassigned"
+			}
+
+		assignments.append(assignment)
+
+	return assignments
