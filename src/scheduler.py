@@ -39,6 +39,13 @@ def fifo_schedule(donations, recipients, volunteers):
 					"donation_id" : donation["donation_id"],
 					"recipient_id" : recipient["recipient_id"],
 					"volunteer_id" : volunteer["volunteer_id"],
+					"scheduled_time" : donation["ready_time"],
+					"decision_reason" : (
+						f"Donation {donation['donation_id']} was assigned "
+						f"to {recipient['organization_name']} with volunteer "
+						f"{volunteer['volunteer_id']} because it was the "
+						f" first feasible recipient-volunteer match found under FIFO scheduling."
+					),
 					"status" : "assigned"
 			}
 			# need to update the volunteers max pickups and recipients capacity
@@ -50,12 +57,19 @@ def fifo_schedule(donations, recipients, volunteers):
 					"donation_id" : donation["donation_id"],
 					"recipient_id" : None,
 					"volunteer_id" : None,
+					"scheduled_time" : None,
+					"decision_reason" : "No feasible match", # replace with rejection reason from matching.py later
 					"status" : "unassigned"
 			}
 		assignments.append(assignment)
 
 	return assignments
 
-
+"""
+Greedy schedule algorithim
+Chooses based on closest expiration 
+"""
+def greedy_schedule(donations, recipients, volunteers):
+		
 
 
