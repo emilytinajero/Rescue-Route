@@ -19,6 +19,7 @@ class TestMatching(unittest.TestCase):
 
         self.donation = data["donations"][0]
         self.recipient = data["recipients"][0]
+        self.recipient["remaining_capacity"] = self.recipient["capacity"]
         self.volunteer = data["volunteers"][0]
 
     def test_food_compatible(self):
