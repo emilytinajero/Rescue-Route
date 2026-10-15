@@ -297,7 +297,49 @@ O(A + D)
 
 ---
 
+# Testing
 
+The project uses Python's `unittest` framework.
+
+Covered test scenarios include:
+
+- Normal matching cases
+- Duplicate donation IDs
+- Empty datasets
+- Invalid datasets
+- Near-expiry donations
+- No compatible recipient
+- Insufficient recipient capacity
+- Insufficient volunteer capacity
+- Competing donations
+- FIFO versus Greedy scheduling behavior
+
+---
+
+# How To Run Program
+
+Navigate to the source directory:
+
+```bash
+cd src
+```
+
+Run the application using:
+
+```bash
+py ./main.py
+```
+
+Menu Options:
+
+```text
+a. FIFO
+b. Greedy
+c. Compare Both
+d. Exit
+```
+
+---
 
 
 
