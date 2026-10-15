@@ -42,7 +42,7 @@ while True:
 			print("Donations Status: ", assignment["status"])
 			print()
 			print("Decision Reason: ", assignment["decision_reason"])
-			print("=====================================\n")
+			print("\n=====================================\n")
 
 		print("=============== FIFO Metrics ===============\n")
 		print("Donations Received: ", metrics.donations_received(data["donations"]))
@@ -102,7 +102,7 @@ while True:
 			print()
 			print("Decision Reason: ", assignment["decision_reason"])
 			print()
-			print("=======================================\n")
+			print("\n=======================================\n")
 
 
 		print("=============== Greedy Metrics ===============\n")
@@ -171,6 +171,14 @@ while True:
 
 		print("========== FIFO VS GREEDY COMPARISION ==========\n")
 		print()
+		print("Assigned Donation Difference: ", comparison["donations_assigned_difference"])
+		print()
+		print("Food Quantity Rescued Difference: ", comparison["rescued_difference"])
+		print()
+		print("Urgent Rescue Rate Difference: ", comparison["urgent_difference"])
+		print()
+		print("==============================================\n")
+
 	if user_input == 'd':
 		print("Thank you for using RESCUE ROUTE!")
 		break
