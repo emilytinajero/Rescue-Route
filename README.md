@@ -342,7 +342,47 @@ d. Exit
 ---
 
 
+# Limitations
 
+Current limitations include:
+
+- Uses simulated datasets only
+- Does not perform route optimization
+- Greedy scheduling is locally optimal but not globally optimal
+- Expiration time is the only scheduling priority
+
+
+---
+
+# Team Contributions
+
+## Emily Tinajero
+
+- Scheduler implementation
+- Metrics implementation
+- Lookup table structures
+- FIFO vs. Greedy comparison metrics
+- Main application integration
+- Complexity Analysis
+- Finalized README.md
+- Testing and Debugging
+
+## Sinjin Kim
+
+- Data loading implementation
+- Validation implementation
+- Matching logic and implementation
+- Decision Reasoning implementation
+- Input dataset creation
+- Testing and Debugging
+
+## Ali Qazwini
+
+- Created all automated unittests
+- Demo preparation
+- Designed sample-input necessary for testing
+- Documentation for data files and scenarios
+- Testing and Debugging
 
 
 
