@@ -29,7 +29,7 @@ organizations have different capacity limits, food acceptance rules, operating h
 
 RescueRoute answers the following question:
 
-> How can time-sensitive food donations be assigned to compatible recipients and volunteers in a way that is efficient, transparent, and easy to explain>
+> How can time-sensitive food donations be assigned to compatible recipients and volunteers in a way that is efficient, transparent, and easy to explain
 
 ---
 
@@ -78,7 +78,74 @@ Contains intentionally invalid records used to verify validation logic by testin
 
 ---
 
+## src/
 
+Contains all application source code.
+
+### data_loader.py
+
+Loads the donation, recipient, and volunteer data from JSON files.
+
+### validations.py
+
+Validates:
+
+- Required fields
+- Unique IDs
+- Positive quantities and capacities
+- Time formats
+- Dataset integrity
+- Accepted Food Types
+- Availabilities
+
+### matching.py
+
+Determines whether a donation-recipient-volunteer combination is feasible.
+
+Checks:
+
+- Food compatibility
+- Capacity constraints
+- Location compatibility
+- Time-Window overlap
+- Volunteer pickup limits
+
+Provides:
+
+- Defered Message
+- Rejection Reasons
+
+### lookup.py
+
+Creates dictionary-based lookup tables for:
+
+- Donations
+- Recipients
+- Volunteers
+
+### scheduler.py
+
+Implements the scheduling algorithms and finds the first match
+
+### FIFO Scheduler
+
+Processes donations in arrival order and assigns the first feasible recipient-volunteer pair.
+
+Creates assignment records and explanation messages.
+
+### Greedy Scheduler
+
+Prioritizes donations with earlier expiration times.
+
+Creates assignment records and explanation messages.
+
+### metrics.py
+
+Calculates all project metrics and comparison statistics
+
+### main.py
+
+Provides the command-line user interface and integrates all project components. 
 
 
 
