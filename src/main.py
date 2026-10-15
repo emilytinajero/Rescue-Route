@@ -35,7 +35,16 @@ while True:
 						data["volunteers"]
 					)
 
-		print("\n=============== FIFO Metrics ===============\n")
+		print("\n========== FIFO ASSIGNMENTS ==========\n")
+		for assignment in fifo_assignments:
+			print("Donation: ", assignment["donation_id"])
+			print()
+			print("Donations Status: ", assignment["status"])
+			print()
+			print("Decision Reason: ", assignment["decision_reason"])
+			print("=====================================\n")
+
+		print("=============== FIFO Metrics ===============\n")
 		print("Donations Received: ", metrics.donations_received(data["donations"]))
 		print()
 		print("Donations Assigned: ", metrics.donations_assigned(fifo_assignments))
@@ -84,6 +93,18 @@ while True:
 						data["recipients"],
 						data["volunteers"]
 					)
+
+		print("\n========== GREEDY ASSIGNMENTS ==========\n")
+		for assignment in greedy_assignments:
+			print("Donation: ", assignment["donation_id"])
+			print()
+			print("Donation Status: ", assignment["status"])
+			print()
+			print("Decision Reason: ", assignment["decision_reason"])
+			print()
+			print("=======================================\n")
+
+
 		print("=============== Greedy Metrics ===============\n")
 		print("Donations Received: ", metrics.donations_received(data["donations"]))
 		print()
@@ -128,7 +149,28 @@ while True:
 								), "%\n")
 		print("=============================================\n")
 
+	if user_input == 'c':
 
+		fifo_assignments = scheduler.fifo_schedule(
+						data["donations"],
+						data["recipients"],
+						data["volunteers"]
+					)
+
+		greedy_assignments = scheduler.greedy_schedule(
+						data["donations"],
+						data["recipients"],
+						data["volunteers"]
+					)
+
+		comparison = metrics.fifo_vs_greedy(
+					fifo_assignments,
+					greedy_assignments,
+					data["donations"]
+				)
+
+		print("========== FIFO VS GREEDY COMPARISION ==========\n")
+		print()
 	if user_input == 'd':
 		print("Thank you for using RESCUE ROUTE!")
 		break
