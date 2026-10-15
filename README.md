@@ -147,9 +147,84 @@ Calculates all project metrics and comparison statistics
 
 Provides the command-line user interface and integrates all project components. 
 
+---
 
+## tests/
 
+Contains automated unit tests.
 
+### test_matching.py
+
+Tests the matching and feasibility logic.
+
+### test_validation.py
+
+Tests the validation functions and dataset integrity
+
+### test_sample_inputs.py
+
+Tests the required project scenarios and edge cases using the provided input files.
+
+---
+
+# Algorithm Design
+
+## FIFO Baseline Strategy
+
+FIFO processes donations in the order they appear in the dataset.
+
+Process:
+
+1. Reads the donation.
+2. Evaluate the recipients in order.
+3. Evaluate the volunteers in order.
+4. Select the first feasible match.
+5. Record the assignment or rejection information
+
+### Local Goal
+
+The local goal is to assign donations while preserving arrival order, ensuring first-in-first-out.
+
+### Limitation
+
+FIFO may process less urgen donations before highly perishable donations because of their arrival order.
+This may cause an unneccessary amount of food to expire before being assigned to a recipient-volunteer pair.
+
+---
+
+## Greedy Urgency-First Strategy
+
+The Greedy strategy prioritizes donations according to their expiration time.
+
+### Our Greedy Rule
+
+Donations are sorted by expiration time before scheduling begins.
+
+Donations with earlier expiration times are always considered before donations with later expiration times.
+
+If multiple donations have the same expiration time, Python's stable
+sorting preserves their original order in the dataset. 
+
+### Process
+
+1. Sort donations by expiration time.
+2. Select the donation with the earliest expiration time.
+3. Evaluate recipient-volunteer combinations.
+4. Assign the first feasible match.
+5. Generate assignment explanations.
+6. Generate deferred explanations when appropriate.
+
+### Local Goal
+
+Prioritize donations that are most at risk of expiring
+
+### Limitation
+
+Since the Greedy strategy focuses on urgency it is not guaranteed to produce a globally optimal schedule.
+Assigning by expiration times may help prevent more donations from going bad,
+but may not be the most globally optimizzed based on total donations assigned.
+
+---
 
 
 
