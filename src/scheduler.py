@@ -113,7 +113,7 @@ def greedy_schedule(donations, recipients, volunteers):
 					f"Donation {donation['donation_id']} was assigned to "
 					f"{recipient['organization_name']} with "
 					f"volunteer {volunteer['volunteer_id']} because "
-					f"it had the earliest expiration time among remaining donations"
+					f"it had the earliest expiration time among remaining donations "
 					f"under the greedy urgency-first strategy. {recipient['organization_name']} "
 					f"accepts {donation['food_type']}, "
 					f"had sufficient capacity available, and volunteer {volunteer['volunteer_id']} "
