@@ -226,7 +226,76 @@ but may not be the most globally optimizzed based on total donations assigned.
 
 ---
 
+# Complexity Analysis
 
+Let:
+
+- D = Number of Donations
+- R = Number of Recipients
+- V = Number of Volunteers
+
+## Matching Procedure
+
+Each donation may evaluate every recipient-volunteer pair in worst-case scenario.
+
+Time Complexity:
+
+```text
+O(R * V)
+```
+
+---
+
+## FIFO Scheduler
+
+Each donation may evaluate every recipient-volunteer combination in worst-case scenario.
+This leads to...
+
+Time Complexity:
+
+```text
+O(D*R*V)
+```
+
+Space Complexity:
+
+```text
+O(A)
+```
+
+where A represents the number of assignment records.
+
+---
+
+## Greedy Scheduler
+
+Donations are first sorted by expiration time.
+
+Sorting Cost:
+
+```text
+O(D log D)
+```
+
+Matching Cost:
+
+```text
+O(D*R*V)
+```
+
+Overall Time Complexity:
+
+```text
+O(D log D + D*R*V)
+```
+
+Space Complexity:
+
+```text
+O(A + D)
+```
+
+---
 
 
 
