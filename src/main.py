@@ -1,28 +1,7 @@
 """
 Main Implementation For Program
 """
-
-"""
-TODO:
-- print out some sort of title screen/intro thingy
-- prompt user for input on whether they want to see fifo or greedy
-- if fifo:
-	* load data
-	* call validate data function from validation.py
-	* create fifo_assignments by calling fifo_schedule()
-	* print out the metrics in a pretty organized way using funcs
-	from the metrics.py
-
-- if greedy:
-	* load data
-	* vall validate data functiion from validation.py
-	* create greedy_assignments by calling fifo_schedule()
-	* print out metrics in pretty organized way
-
-- print comparision in pretty way
-"""
 import data_loader
-import matching
 import scheduler
 import validation
 import metrics
@@ -97,6 +76,73 @@ while True:
 		print()
 		print("===========================================")
 
+
+	if user_input == 'b':
+
+		greedy_assignments = scheduler.greedy_schedule(
+						data["donations"],
+						data["recipients"],
+						data["volunteers"]
+					)
+		print("=============== Greedy Metrics ===============\n")
+		print("Donations Received: ", metrics.donations_received(data["donations"]))
+		print()
+
+		print("Donations Assigned: ", metrics.donations_assigned(
+							greedy_assignments
+						))
+		print()
+
+		print("Unassigned Donations: ", metrics.unassigned_donations(
+							greedy_assignments
+						))
+		print()
+
+		print("Food Quantity Rescued: ", metrics.food_quantity_rescued(
+								greedy_assignments,
+								data["donations"]
+							))
+		print()
+
+		print("Food Quantity At Risk: ", metrics.food_quantity_at_risk(
+								greedy_assignments,
+								data["donations"]
+							))
+		print()
+
+		print("Urgent Rescue Rate: ", metrics.urgent_rate_rescue(
+							greedy_assignments,
+							data["donations"]
+						), "%\n")
+
+		print("Recipient Capacity Utilization Rate: ", metrics.recipient_capacity_utilization(
+									greedy_assignments,
+									data["donations"],
+									data["recipients"]
+								), "%\n")
+
+		print("Volunteer Capacity Utilization Rate: ", metrics.volunteer_capacity_utilization(
+									greedy_assignments,
+									data["donations"],
+									data["volunteers"]
+								), "%\n")
+		print("=============================================\n")
+
+
 	if user_input == 'd':
 		print("Thank you for using RESCUE ROUTE!")
 		break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
