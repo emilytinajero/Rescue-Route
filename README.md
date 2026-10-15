@@ -21,3 +21,88 @@ The goal is to maximize food rescue while prioritizing donations that are closes
 
 ---
 
+# Problem Statement
+
+Restaurants, grocery stores, campus events, and caterers often have surplus
+food that must be distributed before it expires. At the same time, community
+organizations have different capacity limits, food acceptance rules, operating hours, and location constraints.
+
+RescueRoute answers the following question:
+
+> How can time-sensitive food donations be assigned to compatible recipients and volunteers in a way that is efficient, transparent, and easy to explain>
+
+---
+
+# System Architecture
+
+## Repository Structure
+
+```text
+data/
+|-- sample_input.json
+|-- empty_input.json
+|__ invalid_inputs.json
+
+src/
+|-- data_loader.py
+|-- validation.py
+|-- matching.py
+|-- lookup.py
+|-- scheduler.py
+|-- metrics.py
+|__ main.py
+
+tests/
+|-- test_matching.py
+|-- test_validation.py
+|__ test_sample_inputs.py
+```
+
+---
+
+## data/
+
+Contains all JSON datasets used by the project.
+
+### sample_input.json
+
+Primary dataset containing all donations, recipients, and volunteers.
+
+### empty_input.json
+
+Used to test empty datasets and edge cases.
+
+### invalid_inputs.json
+
+Contains intentionally invalid records used to verify validation logic by testing all edge cases and testing every validation rule
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
