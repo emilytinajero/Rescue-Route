@@ -171,6 +171,57 @@ Tests the required project scenarios and edge cases using the provided input fil
 
 ---
 
+## Data Model
+
+This system uses three primary entites:
+
+### Donation
+
+Attributes:
+
+- donation_id (primary_key)
+- donor_name
+- food_type
+- quantity
+- expiry_time
+- area
+- ready_time
+
+### Recipient
+
+Attributes:
+
+- recipient_id (primary key)
+- organization_name
+- accepted_food_types
+- capacity
+- remaining_capacity
+- area
+- closing_time
+
+### Volunteer
+
+Attributes:
+
+- volunteer_id (primary key)
+- vehicle_capacity
+- area
+- availability
+- max_pickups
+
+### Assignment
+
+Attributes:
+
+- donation_id (foreign key)
+- recipient_id (foreign key)
+- volunteer_id (foreign key)
+- scheduled_time
+- decision_reason
+- status
+
+---
+
 # Algorithm Design
 
 ## FIFO Baseline Strategy
@@ -261,6 +312,20 @@ The metrics module compares FIFO and Greedy scheduling by measuring:
 - Difference in urgent rescue rate
 
 These metrics make it possible to evaluate whether prioritizing earlier-expiring donations improves scheduling performance compared to a simple FIFO approach.
+
+|                Metric |  FIFO  |  Greedy  |
+|-----------------------|--------|----------|
+| Donations Received    |     13 |       13 |
+| Donations Assigned    |      6 |        6 |
+| Donations Unassigned  |      7 |        7 |
+| Food Quantity Rescued |     85 |       85 |
+| Food Quantity At Risk |    185 |      185 |
+| Urgent Rescue Rate    | 33.33% |   100.0% |
+
+As shown above, for the provided sample dataset, the FIFO and Greedy strategies had the same metrics for everything
+besides the urgent rescue rate. The Greedy strategy achieved a significantly
+higher urgent rescue rate of 100.0%, compared to the FIFO baseline of 33.33%, by prioritizing donations
+with earlier expiration times. 
 
 ---
 
@@ -422,7 +487,18 @@ Current limitations include:
 - Documentation for data files and scenarios
 - Testing and Debugging
 
+---
 
+# References
+
+- Python Documentation: https://docs.python.org/3/
+- Python unittest Documentation: https://docs.python.org/3/library/unittest.html
+- Course materials, in-class coding assignments, and project outline provided for CPSC 335
+
+This project was developed using standard Python libraries along with course concepts
+related to algorithms, data structures, testing, and greedy scheduling. 
+
+---
 
 
 
