@@ -242,11 +242,11 @@ The system calculates the following metrics for both scheduling strategies:
 
 ### FIFO Results
 
-images/fifo_metrics.png
+![FIFO Metrics](images/fifo_metrics.png)
 
 ### Greedy Results
 
-images/greedy_metrics.png
+![Greedy Metrics](images/greedy_metrics.png)
 
 ### Comparison Summary
 
