@@ -226,6 +226,40 @@ but may not be the most globally optimizzed based on total donations assigned.
 
 ---
 
+# FIFO Versus Greedy: Metrics Comparison
+---
+
+The system calculates the following metrics for both scheduling strategies:
+
+- Donations Received
+- Donations Assigned
+- Donations Unassigned
+- Food Quantity Rescued
+- Food Quantity At Risk
+- Urgent Rescue Rate
+- Recipient Capacity Utilization
+- Volunteer Capacity Utilization
+
+### FIFO Results
+
+images/fifo_metrics.png
+
+### Greedy Results
+
+images/greedy_metrics.png
+
+### Comparison Summary
+
+The metrics module compares FIFO and Greedy scheduling by measuring:
+
+- Difference in assigned donations
+- Difference in rescued food quantity
+- Difference in urgent rescue rate
+
+These metrics make it possible to evaluate whether prioritizing earlier-expiring donations improves scheduling performance compared to a simple FIFO approach.
+
+---
+
 # Complexity Analysis
 
 Let:
