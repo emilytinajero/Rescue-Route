@@ -38,6 +38,10 @@ RescueRoute answers the following question:
 ## Repository Structure
 
 ```text
+images/
+|-- fifo_metrics.png
+|__ greedy_metrics.png
+
 data/
 |-- sample_input.json
 |-- empty_input.json
