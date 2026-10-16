@@ -313,6 +313,20 @@ The metrics module compares FIFO and Greedy scheduling by measuring:
 
 These metrics make it possible to evaluate whether prioritizing earlier-expiring donations improves scheduling performance compared to a simple FIFO approach.
 
+|                Metric |  FIFO  |  Greedy  |
+|-----------------------|--------|----------|
+| Donations Received    |     13 |       13 |
+| Donations Assigned    |      6 |        6 |
+| Donations Unassigned  |      7 |        7 |
+| Food Quantity Rescued |     85 |       85 |
+| Food Quantity At Risk |    185 |      185 |
+| Urgent Rescue Rate    | 33.33% |   100.0% |
+
+As shown above, for the provided sample dataset, the FIFO and Greedy strategies had the same metrics for everything
+besides the urgent rescue rate. The Greedy strategy achieved a significantly
+higher urgent rescue rate of 100.0%, compared to the FIFO baseline of 33.33%, by prioritizing donations
+with earlier expiration times. 
+
 ---
 
 # Complexity Analysis
